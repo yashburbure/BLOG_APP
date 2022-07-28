@@ -17,8 +17,3 @@ mongoose.connect("mongodb+srv://yash_burbure:F8GFn2cTaAwJvDfr@cluster0.wk2j7.mon
         console.log("Can't connected to MongoDB");
     });
 
-
-
-
-
-// mongodb password - F8GFn2cTaAwJvDfr
