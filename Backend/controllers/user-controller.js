@@ -1,5 +1,5 @@
 import User from "../model/User";
-
+import bcrypt from "bcryptjs";
 const getAllUser=async(req,res,next)=>{
     let users;
     try{
@@ -26,8 +26,9 @@ const SignUp=async(req,res,next)=>{
     if(existingUser){
         return res.status(400).json({message:"User Already exits!"});
     }
+    const hashedPassword=bcrypt.hashSync(password);
     const user=new User({
-        name,email,password
+        name,email,password:hashedPassword
     });
     try{
         user.save();
@@ -37,4 +38,32 @@ const SignUp=async(req,res,next)=>{
     }
     return res.status(201).json({user});
 };
-export {getAllUser,SignUp};
+const Login=async(req,res,next)=>{
+    const {email,password}=req.body;
+    let existingUser;
+    try{
+        existingUser=await User.findOne({email});
+    }
+    catch(err){
+        console.log(err);
+    }
+    if(!existingUser){
+        return res.status(404).json({
+            message:"User not exits"
+        });
+    }
+    console.log(existingUser);
+    console.log(existingUser.password);
+    const isPasswordCorrect=bcrypt.compareSync(password,existingUser.password);
+    if(!isPasswordCorrect){
+        return res.status(400).json({
+            message:"Incorrect Password"
+        });
+    }
+    return res.status(200).json({
+        message:"Login Successful"
+    });
+};
+
+
+export {getAllUser,SignUp,Login};

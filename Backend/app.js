@@ -1,11 +1,15 @@
 import express from "express";
 import mongoose from "mongoose";
 import User from "./model/User";
-import router from "./routes/User-routes";
+import UserRouter from "./routes/User-routes";
+import BlogRouter from "./routes/Blog-routes";
+import Blog from "./model/Blog";
 const app=express();
 
 app.use(express.json());
-app.use("/api/user",router);
+app.use("/api/user",UserRouter);
+app.use("/api/blog",BlogRouter);
+
 
 mongoose.connect("mongodb+srv://yash_burbure:F8GFn2cTaAwJvDfr@cluster0.wk2j7.mongodb.net/?retryWrites=true&w=majority")
     .then(()=>{
