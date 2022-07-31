@@ -28,7 +28,10 @@ const SignUp=async(req,res,next)=>{
     }
     const hashedPassword=bcrypt.hashSync(password);
     const user=new User({
-        name,email,password:hashedPassword
+        name,
+        email,
+        password:hashedPassword,
+        blogs:[]
     });
     try{
         user.save();
@@ -52,8 +55,6 @@ const Login=async(req,res,next)=>{
             message:"User not exits"
         });
     }
-    console.log(existingUser);
-    console.log(existingUser.password);
     const isPasswordCorrect=bcrypt.compareSync(password,existingUser.password);
     if(!isPasswordCorrect){
         return res.status(400).json({
