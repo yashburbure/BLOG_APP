@@ -33,13 +33,17 @@ const SignUp=async(req,res,next)=>{
         password:hashedPassword,
         blogs:[]
     });
+    let Newuser;
     try{
-        user.save();
+        Newuser=await user.save();
     }
     catch(err){
         console.log(err);
     }
-    return res.status(201).json({user});
+    return res.status(201).json({
+        user,
+        id:Newuser._id
+    });
 };
 const Login=async(req,res,next)=>{
     const {email,password}=req.body;
@@ -62,7 +66,8 @@ const Login=async(req,res,next)=>{
         });
     }
     return res.status(200).json({
-        message:"Login Successful"
+        message:"Login Successful",
+        id:existingUser._id
     });
 };
 

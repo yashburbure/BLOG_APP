@@ -5,7 +5,7 @@ import User from "../model/User";
 const getAllBlogs=async(req,res,next)=>{
     let blogs;
     try{
-        blogs=await Blog.find();
+        blogs=await Blog.find().populate('user');
     }
     catch(err){
         console.log(err);

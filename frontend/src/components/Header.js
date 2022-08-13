@@ -18,6 +18,7 @@ function Header() {
   }
   const Logout=()=>{
     dispatch(Authactions.logout());
+    localStorage.setItem("userId",null);
     Navigate("/Login");
   };
 

@@ -45,13 +45,15 @@ function Login() {
   const handleSubmit=(e)=>{
     e.preventDefault();
     console.log(inputs);
-    sendRequest().then((data)=>{
+    sendRequest()
+    .then((data)=>{
       console.log(data);
+      localStorage.setItem("userId",data.id);
+    })
+    .then((data)=>{
       dispatch(Authactions.login());
       navigate("/blogs");
     })
-    .then((data)=>console.log(data));
-
   };
 
   return (
