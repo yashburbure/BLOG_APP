@@ -1,8 +1,11 @@
 import React,{useState} from 'react';
 import {AppBar,Toolbar,Typography,Button,Box,Tabs,Tab} from "@mui/material";
 import {useNavigate} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useSelector,useDispatch} from "react-redux";
+import {Authactions} from '../store';
+
 function Header() {
+  const dispatch=useDispatch();
   const isLoggedIn=useSelector(state=>state.isLoggedIn);
   console.log(isLoggedIn);
   const Navigate=useNavigate();
@@ -13,6 +16,10 @@ function Header() {
   const MoveToLogin=()=>{
     Navigate("/Login");
   }
+  const Logout=()=>{
+    dispatch(Authactions.logout());
+    Navigate("/Login");
+  };
 
   return (
     <AppBar
@@ -36,7 +43,7 @@ function Header() {
               !isLoggedIn && 
               <Button variant="contained" color="warning" sx={{margin:1}} disableElevation>SignUp</Button>
             }
-            {isLoggedIn && <Button variant="contained" color="warning" sx={{margin:1}} disableElevation>LogOut</Button>}
+            {isLoggedIn && <Button onClick={Logout} variant="contained" color="warning" sx={{margin:1}} disableElevation>LogOut</Button>}
           </Box>
         </Toolbar>
     </AppBar>
