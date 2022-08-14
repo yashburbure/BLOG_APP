@@ -5,13 +5,12 @@ import Blogs from './components/Blogs';
 import BlogDetail from './components/Blogdetail';
 import UserBlogs from "./components/UserBlogs";
 import Addblog from "./components/Addblog";
-
+import Editblog from "./components/Editblog";
+import './App.css';
 import {Routes,Route} from "react-router-dom";
-import { useSelector } from "react-redux";
+
 
 function App() {
-  const isLoggedIn=useSelector(state=>state.isLoggedIn);
-  console.log(isLoggedIn);
   return (
     <React.Fragment>
       <header>
@@ -23,7 +22,8 @@ function App() {
           <Route exact path="/blogs" element={<Blogs/>}/>
           <Route exact path="/myblogs" element={<UserBlogs/>}/>
           <Route exact path="/myblogs/:id" element={<BlogDetail/>}/>
-          <Route exact path="blogs/add" element={<Addblog/>}/>
+          <Route exact path="/blog/add" element={<Addblog/>}/>
+          <Route exact path="/editblog" element={<Editblog/>}/>
         </Routes>
       </main>
     </React.Fragment>

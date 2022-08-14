@@ -7,7 +7,7 @@ import {Authactions} from '../store';
 function Header() {
   const dispatch=useDispatch();
   const isLoggedIn=useSelector(state=>state.isLoggedIn);
-  console.log(isLoggedIn);
+  // console.log(isLoggedIn);
   const Navigate=useNavigate();
   const [value,setValue]=useState(0);
   const handleEvent=(event,val)=>{
@@ -32,7 +32,8 @@ function Header() {
             isLoggedIn && 
             <Tabs textColor='inherit' value={value} onChange={handleEvent}>
               <Tab label="All Blogs" onClick={()=>Navigate("/blogs")}/>
-              <Tab label="My Blogs" onClick={()=>Navigate("/myblogs")}/>              
+              <Tab label="My Blogs" onClick={()=>Navigate("/myblogs")}/>  
+              <Tab label="Add Blog" onClick={()=>Navigate("/blog/add")}/>           
             </Tabs>
           }
           <Box marginLeft='auto'>

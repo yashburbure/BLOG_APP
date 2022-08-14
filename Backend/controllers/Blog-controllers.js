@@ -19,6 +19,7 @@ const getAllBlogs=async(req,res,next)=>{
 };
 
 const addBlog=async(req,res,next)=>{
+    console.log(req.body);
     const {title,description,image,user}=req.body;
     let existingUser;
     try{

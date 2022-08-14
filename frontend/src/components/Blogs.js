@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import Blog from './Blog';
 
+
 function Blogs() {
   const [blogs,setBlogs]=useState([]);
   const sendRequest=async ()=>{
@@ -18,7 +19,7 @@ function Blogs() {
   return (
     <div>{
       blogs.map(blog=>(
-        <Blog key={blog._id} title={blog.title} description={blog.description} imageUrl={blog.image} userName={blog.user.name} />
+        <Blog key={blog._id} title={blog.title} description={blog.description} imageUrl={blog.image} userName={blog.user.name} blogId={blog._id}/>
       ))
     }
     </div>

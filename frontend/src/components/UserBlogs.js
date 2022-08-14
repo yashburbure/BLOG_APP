@@ -14,17 +14,17 @@ function UserBlogs() {
   useEffect(()=>{
     sendRequest().then((data)=>{
       setUserBlogs(data.blog.blogs);
-      console.log(userBlogs); 
+      // console.log(userBlogs);  
     });
   },[userBlogs]);
   return (
     <div>{
       userBlogs.map(blog=>(
-        <Blog key={blog._id} title={blog.title} description={blog.description} imageUrl={blog.image} userName={blog.user.name} />
+        <Blog key={blog._id} title={blog.title} description={blog.description} imageUrl={blog.image} userName={null} />
       ))
       }
     </div>
   )
 }
 
-export default UserBlogs
+export default UserBlogs;
