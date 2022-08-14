@@ -55,12 +55,14 @@ const addBlog=async(req,res,next)=>{
 
 
 const UpdateBlog=async(req,res,next)=>{
-    const {title,description}=req.body;
+    const {title,image,description}=req.body;
     const Blogid=req.params.id;
     let blog;
+    // console.log(req.body);
     try{
         blog=await Blog.findByIdAndUpdate(Blogid,{$set:{
             title,
+            image,
             description
         }})
     }

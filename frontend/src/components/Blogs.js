@@ -1,9 +1,11 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import Blog from './Blog';
+import {useSelector} from 'react-redux';
 
 
 function Blogs() {
+  const isLoggedIn=useSelector(state=>state.isLoggedIn);
   const [blogs,setBlogs]=useState([]);
   const sendRequest=async ()=>{
     const res=await axios.get("http://localhost/api/blog/")
@@ -13,17 +15,22 @@ function Blogs() {
   }
   useEffect(()=>{
     sendRequest().then(data=>setBlogs(data.blogs));
-    // console.log(blogs);
   }
   ,[blogs]);
   return (
-    <div>{
+    <React.Fragment>{
+      isLoggedIn && 
       blogs.map(blog=>(
-        <Blog key={blog._id} title={blog.title} description={blog.description} imageUrl={blog.image} userName={blog.user.name} blogId={blog._id}/>
+        <Blog key={blog._id} title={blog.title} description={blog.description} imageUrl={blog.image} userName={blog.user.name} blogId={blog._id} flag={blog.user._id===localStorage.getItem('userId')}/>
       ))
     }
-    </div>
+    {
+      !isLoggedIn &&
+      <h2 style={{display:"flex",justifyContent:"center"}}>404 Not found</h2>
+    }
+    </React.Fragment>
   )
 }
 
 export default Blogs;
+// flag={blog._id.user._id===localStorage.getItem("userId")}

@@ -13,11 +13,11 @@ import './Blog_css.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const Blog=({title,description,imageUrl,userName,blogId})=> {
+const Blog=({title,description,imageUrl,userName,blogId,flag})=> {
+    console.log(flag);
     const navigate=useNavigate();
     const handleEdit=(e)=>{
-        console.log(title);
-        navigate('/editblog',{state:{id:1,name:'sabaoon'}});
+        navigate(`/myblogs/${blogId}`);
     }
     const handleDelete=async(e)=>{
         if(window.confirm("Are you sure")){
@@ -27,14 +27,17 @@ const Blog=({title,description,imageUrl,userName,blogId})=> {
     return (
         <div className="Blog">
             <Card sx={{ maxWidth:"60vw",marginTop:2,padding:2,boxShadow:"5px 5px 10px grey", margin:"auto"}}>
-                <Box display="flex">
-                    <IconButton sx={{marginLeft:'auto'}} onClick={handleEdit}>
-                        <EditIcon/>
-                    </IconButton>
-                    <IconButton onClick={handleDelete}>
-                        <DeleteIcon/>
-                    </IconButton>
-                </Box>
+                {
+                    flag && 
+                    <Box display="flex">
+                        <IconButton sx={{marginLeft:'auto'}} onClick={handleEdit}>
+                            <EditIcon/>
+                        </IconButton>
+                        <IconButton onClick={handleDelete}>
+                            <DeleteIcon/>
+                        </IconButton>
+                    </Box>
+                }
                 <CardActionArea>
                     {
                         userName &&

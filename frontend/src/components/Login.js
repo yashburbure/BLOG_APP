@@ -14,8 +14,6 @@ function Login() {
     email:"",
     password:""
   }); 
-
-  const [state,setState]=useState(false);
   const handleChange=(e)=>{
     setInputs(prevState=>({
       ...prevState,
@@ -24,20 +22,10 @@ function Login() {
   };
 
   const sendRequest=async()=>{
-    let res;
-    if(state){
-      res=await axios.post("http://localhost/api/user/SignUp",{
-        name:inputs.name,
+    const res=await axios.post("http://localhost/api/user/Login",{
         email:inputs.email,
         password:inputs.password
       }).catch(err=>console.log(err));
-    }
-    else{
-      res=await axios.post("http://localhost/api/user/Login",{
-        email:inputs.email,
-        password:inputs.password
-      }).catch(err=>console.log(err));
-    }
     const data=await res.data;
     return data;
   };
@@ -56,6 +44,7 @@ function Login() {
     })
   };
 
+
   return (
     <form onSubmit={handleSubmit}>
       <Box 
@@ -64,26 +53,22 @@ function Login() {
         justifyContent='center' 
         alignItems="center"
         boxShadow="10px 10px 30px #ccc"
-        maxWidth={400}
+        width={"60%"}
         margin="auto"
         marginTop={5}
         borderRadius={5}
         >
         <Typography variant='h4' padding={3}>
-          {!state?"Login":"SignUp"}
+          Login
         </Typography>
-        {
-          state && <TextField name="name" onChange={handleChange} value={inputs.name} size='small' label="Username" margin='normal' required/>
-        }
         <TextField name="email" onChange={handleChange} value={inputs.email} type="email" size="small" label="Email" margin="normal" required/>
         <TextField name="password" onChange={handleChange} value={inputs.password} type="password" size="small" label="Password" margin='normal' required/>
         <Button type="submit" color="warning" size="small" variant="contained" sx={{margin:"10px",marginTop:"20px "}}>Submit</Button>
         <Button size="small" sx={{margin:"10px"}}
           onClick={()=>{
-              if(state) setState(false);
-              else setState(true); 
+            navigate("/SignUp");
           }}
-        >Change to {state?"Login":"SignUp"}</Button>
+        >Change to SignUp</Button>
       </Box>
     </form>
   )

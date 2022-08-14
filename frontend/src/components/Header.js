@@ -7,19 +7,18 @@ import {Authactions} from '../store';
 function Header() {
   const dispatch=useDispatch();
   const isLoggedIn=useSelector(state=>state.isLoggedIn);
-  // console.log(isLoggedIn);
-  const Navigate=useNavigate();
+  const navigate=useNavigate();
   const [value,setValue]=useState(0);
   const handleEvent=(event,val)=>{
     setValue(val);
   }
   const MoveToLogin=()=>{
-    Navigate("/Login");
+    navigate("/Login");
   }
   const Logout=()=>{
     dispatch(Authactions.logout());
     localStorage.setItem("userId",null);
-    Navigate("/Login");
+    navigate("/Login");
   };
 
   return (
@@ -31,9 +30,9 @@ function Header() {
           {
             isLoggedIn && 
             <Tabs textColor='inherit' value={value} onChange={handleEvent}>
-              <Tab label="All Blogs" onClick={()=>Navigate("/blogs")}/>
-              <Tab label="My Blogs" onClick={()=>Navigate("/myblogs")}/>  
-              <Tab label="Add Blog" onClick={()=>Navigate("/blog/add")}/>           
+              <Tab label="All Blogs" onClick={()=>navigate("/blogs")}/>
+              <Tab label="My Blogs" onClick={()=>navigate("/myblogs")}/>  
+              <Tab label="Add Blog" onClick={()=>navigate("/blog/add")}/>           
             </Tabs>
           }
           <Box marginLeft='auto'>
@@ -43,7 +42,7 @@ function Header() {
             }
             {
               !isLoggedIn && 
-              <Button variant="contained" color="warning" sx={{margin:1}} disableElevation>SignUp</Button>
+              <Button variant="contained" color="warning" sx={{margin:1}} onClick={()=>navigate("/SignUp")} disableElevation>SignUp</Button>
             }
             {isLoggedIn && <Button onClick={Logout} variant="contained" color="warning" sx={{margin:1}} disableElevation>LogOut</Button>}
           </Box>

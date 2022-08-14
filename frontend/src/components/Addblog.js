@@ -3,7 +3,6 @@ import { TextField,Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import axios from 'axios';
-import { rootShouldForwardProp } from '@mui/material/styles/styled';
 
 
 function Addblog() {
@@ -47,15 +46,15 @@ function Addblog() {
           justifyContent='center' 
           alignItems="center"
           boxShadow="10px 10px 30px #ccc"
-          maxWidth={"60%"}
+          width="80%"
           margin="auto"
           marginTop={5}
           borderRadius={5}
         >
-          <Typography variant="h5" textAlign="center" marginBottom={2}>Post Your Blog</Typography>
-          <TextField onChange={handleChange} name="title" value={value.title} label="Title" margin='normal' sx={{width:"50%"}} spellCheck={false}/>
-          <TextField onChange={handleChange} name="imageUrl" value={value.imageUrl} multiline  maxRows={Infinity} label="ImageURL" margin='normal' sx={{width:"50%"}} spellCheck={false}/>
-          <TextField onChange={handleChange} name="description" value={value.description} multiline   maxRows={Infinity} label="Description" margin='normal' sx={{width:"50%"}} spellCheck={false}/>
+          <Typography variant="h5" textAlign="center" margin={2} >Post Your Blog</Typography>
+          <TextField onChange={handleChange} name="title" value={value.title} label="Title" margin='normal' sx={{width:"70%"}} spellCheck={false}/>
+          <TextField onChange={handleChange} name="imageUrl" value={value.imageUrl} multiline  maxRows={Infinity} label="ImageURL" margin='normal' sx={{width:"70%"}} spellCheck={false}/>
+          <TextField onChange={handleChange} name="description" value={value.description} multiline   maxRows={Infinity} label="Description" margin='normal' sx={{width:"70%"}} spellCheck={false}/>
           <Button type="submit" color="warning" size="small" variant="contained" sx={{margin:"10px",marginTop:"20px "}} >Submit</Button>
         </Box>
       </form>
