@@ -16,4 +16,5 @@ const Authactions=LoginSlice.actions;
 const store=configureStore({
     reducer:LoginSlice.reducer,
 });
+
 export {Authactions,store};

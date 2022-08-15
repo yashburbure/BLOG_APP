@@ -13,7 +13,16 @@ function Login() {
     name:"",
     email:"",
     password:""
-  }); 
+  });
+  const giveWidth=()=>{
+    if(window.innerWidth>=760) return "40%";
+    else if(window.innerWidth>=590) return "50%";
+    else if(window.innerWidth>=490) return "60%";
+    else if(window.innerWidth>=370) return "70%";
+    else if(window.innerWidth>=360) return "80%";
+    return "90%";
+  }
+  const [widthBox,setWidthBox]=useState(giveWidth());
   const handleChange=(e)=>{
     setInputs(prevState=>({
       ...prevState,
@@ -43,8 +52,14 @@ function Login() {
       navigate("/blogs");
     })
   };
-
-
+  window.addEventListener("resize",()=>{
+    if(window.innerWidth>=760) setWidthBox("40%");
+    else if(window.innerWidth>=590) setWidthBox("50%");
+    else if(window.innerWidth>=490) setWidthBox("60%");
+    else if(window.innerWidth>=370) setWidthBox("70%");
+    else if(window.innerWidth>=360) setWidthBox("80%");
+    else setWidthBox("90%");
+  });
   return (
     <form onSubmit={handleSubmit}>
       <Box 
@@ -53,10 +68,11 @@ function Login() {
         justifyContent='center' 
         alignItems="center"
         boxShadow="10px 10px 30px #ccc"
-        width={"60%"}
+        width={widthBox}
         margin="auto"
         marginTop={5}
         borderRadius={5}
+        className="Box_res"
         >
         <Typography variant='h4' padding={3}>
           Login

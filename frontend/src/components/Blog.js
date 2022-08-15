@@ -9,12 +9,10 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import './Blog_css.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const Blog=({title,description,imageUrl,userName,blogId,flag})=> {
-    console.log(flag);
     const navigate=useNavigate();
     const handleEdit=(e)=>{
         navigate(`/myblogs/${blogId}`);
@@ -25,7 +23,7 @@ const Blog=({title,description,imageUrl,userName,blogId,flag})=> {
         }
     }
     return (
-        <div className="Blog">
+        <div style={{marginTop:"20px"}}>
             <Card sx={{ maxWidth:"60vw",marginTop:2,padding:2,boxShadow:"5px 5px 10px grey", margin:"auto"}}>
                 {
                     flag && 
